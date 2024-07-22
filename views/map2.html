@@ -1,0 +1,73 @@
+<script>
+
+    //문서가   준비되면  함수가 실행됨
+    $(document).ready(function () {
+        init();                  //init이라는 함수를 호출함
+        $('#s_bt').click(function () {
+            panTo(37.5665851, 126.9782038);
+            createMarker(37.5665851, 126.9782038);
+            // alert('s_bt');      // 브라우저 메시지로 s_bt라는 문구를 띄움
+        });
+        //id는 #으로 가져옴
+        $('#b_bt').click(function () {
+            panTo(35.179665, 129.0747635);
+            createMarker(35.179665, 129.0747635);
+
+        });
+        $('#j_bt').click(function () {
+            panTo(33.4998066, 126.531359);
+            createMarker(33.4998066, 126.531359);
+
+        });
+    });        //jquary 사용
+
+    var map;    //map을 전역변수로 만들고 해당 맵을 fanto에서 이동함
+    function panTo(lat, lng) {      //좌표를 변수화 시켜서 원하는 위치로 이동시킬수있다
+        // 이동할 위도 경도 위치를 생성합니다 
+        var moveLatLon = new kakao.maps.LatLng(lat, lng);
+        map.panTo(moveLatLon);
+    }
+
+    var marker;     //위와 같이 marker를 전역변수화 시킴
+    function createMarker(lat, lng) {
+        // 마커가 표시될 위치입니다 
+        var markerPosition = new kakao.maps.LatLng(lat, lng);
+
+        // 마커를 생성합니다
+        marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+    }
+
+
+    function init() {
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 5 // 지도의 확대 레벨
+            };
+
+        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+        map = new kakao.maps.Map(mapContainer, mapOption);
+    }
+</script>
+
+<div class="container" style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 style="font-size: 45px;">Map2</h1>
+
+            <div id="map" style="width:100%;height:600px;"></div>
+
+            <div style="padding-top: 15px;">
+                <button id="s_bt" type="button" class="btn btn-primary">seoul</button>
+                <button id="b_bt" type="button" class="btn btn-info">busan</button>
+                <button id="j_bt" type="button" class="btn btn-warning">jeju</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

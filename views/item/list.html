@@ -1,0 +1,49 @@
+<style>
+  .item_img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .item_img:hover {
+    width: 79px;
+    height: 79px;
+    border: 1px solid red;
+  }
+</style>
+
+
+
+<div class="container" style="margin-top:30px">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Item Page</h2>
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Img</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>RegDate</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in datas %}
+          <tr>
+            <td>
+              <a href="item/detail?id={{data.id}}">
+                <img class="item_img" src="img/{{data.imgname}}">
+              </a>
+            </td>
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.price}}</td>
+            <td>{{data.regdate}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

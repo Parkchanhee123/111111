@@ -1,0 +1,48 @@
+<script>
+    function connect() {
+        web3 = new Web3(
+            new Web3.providers.HttpProvider("HTTP://10.20.32.26:7545")
+        );
+
+        if (web3.isConnected()) {
+            console.log("connected");
+        } else {
+            console.log("not connected");
+        }
+    }
+
+
+    $(document).ready(function () {
+        $('#connect_btn').click(function () {        //connect버튼을 눌렀을때 이벤트
+            connect();
+        })
+        $('#get_btn').click(function () {
+            alert('get_btn');
+        })
+    });
+</script>
+
+<div class="container" style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Block1 Page</h2>
+            <a href="#" id="connect_btn" class="btn btn-info" role="button">Connect</a>
+            <a href="#" id="get_btn" class="btn btn-info" role="button">Get</a>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Account</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0xC013c92cC9E88dAEa89c4601Fe55b249a315157D</td>
+                        <td>100.00 ETH</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+        </div>
+    </div>
+</div>

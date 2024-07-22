@@ -1,0 +1,27 @@
+<div class="container" style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Item Add Page</h2>
+            <form action="/item/addimpl" method="post" enctype="multipart/form-data">
+                                <!-- 파일이 들어갈때는 enc타입을 멀티 폼데이터로 설정해줌  -->
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" placeholder="Enter Name" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="price">PRICE</label>
+                    <input type="number" class="form-control" placeholder="Enter PRICE" id="price" name="price">
+                </div>
+                <div class="form-group">
+                    <label for="img">Image</label>
+                    <input type="file" class="form-control" placeholder="Enter PRICE" id="img" name="img">
+                    <!-- 사진을 넣을땐 file사용  -->
+                </div>
+                <div class="form-group form-check">
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">ADD</button>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>

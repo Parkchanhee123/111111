@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- HighCharts를 사용하기 위한 라이브러리리  -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- web3.js를 script에 추가하였다. -->
+    <script type="text/javascript" src="/js/bignumber.min.js"></script>
+    <script type="text/javascript" src="/js/web3.js"></script>
+
+    <!-- 카카오 지도 api를 받아오는 스크립트 -->
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fab85cf9de2ed2a429d4f043aa2e5c7"></script>
+    <style>
+        .fakeimg {
+            height: 200px;
+            background: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <h1>My First Page</h1>
+        <p>Resize this responsive page to see the effect!</p>
+    </div>
+
+    <ul class="nav justify-content-end">
+        {% if loginid %} <!-- 로그인을 했을때는 로그아웃버튼만 -->
+        <li class="nav-item">
+            <a class="nav-link" href="/myinfo?id={{loginid}}">{{loginid}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        {% else %} <!-- 로그인을 안했을때는 login, register 버튼-->
+        <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+        </li>
+        {% endif %}
+    </ul>
+
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="/">Home</a>
+        <!-- "/" 해주면 서버는 root를 찾음 (초기화면)-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/map">Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/map2">Map2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chart">Chart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chart2">Chart2</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/cust">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cust/add">Add cust</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/item">Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/item/add">Add Item</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/block/block1">Block1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/block/block2">Block2</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% if center %} <!-- center가 포함된게 존재하면 출력하여 주고-->
+    {% include center+".html" %} <!-- login.html을 만들면 여기 해당해서 뿌려짐 -->
+    {% else %}
+    {% include "center.html" %} <!-- 존재하지 않으면 -->
+    {% endif %} <!-- 내가만든 center.html을 뿌려라 -->
+
+    <p class="bg-secondary text-white" style="text-align: center; margin-top: 30px;">Footer</p>
+</body>
+
+</html>
