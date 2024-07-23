@@ -1,9 +1,70 @@
+<script>
+    let web3;
+    let accounts;
+
+    function getacc(loc) {
+        let acc_info = accounts[loc]
+        $('#target_acc').val(acc_info)      // 인풋은 val로 넘겨줌
+    }
+
+    function connect() {
+        web3 = new Web3(
+            new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545")
+        );
+
+        if (web3.isConnected()) {
+            console.log("connected");
+        } else {
+            console.log("not connected");
+        }
+    }
+
+    function get() {
+        accounts = web3.eth.accounts;
+        console.log(accounts);
+        let result = '';
+        for (var i in accounts) {
+            let balance = web3
+                .fromWei(web3.eth.getBalance(accounts[i]))
+                .toNumber() + "ETH";
+            result += '<tr>';
+            result += '<td onclick = "getacc(' + i + ');">' + accounts[i] + '</td>';
+            result += '<td>' + balance + '</td>';
+            result += '</tr>';
+        }
+        $('#acc_info').html(result);
+    };
+
+    $(document).ready(function () {     // 문서가 준비됐을때
+        connect();
+        get();
+    });
+</script>
+
 <div class="container" style="margin-top:30px">
     <div class="row">
         <div class="col-sm-12">
             <h2>Block2 Page</h2>
-            
-            <br>
+            <h5> My Account = {{custinfo.acc}}</h5>
+            <input type="text" id="target_acc" placeholder="Input Target Account"
+                style="width: 500px; text-align: center; margin: 8px;"><br>
+            Amount:<input type="number" id="amount">
+            <a href="#" id="send_btn" class="btn btn-info" role="button" style="margin-left: 20px; margin-bottom: 10px;">Send</a>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Account</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody id="acc_info">
+                    <!-- <tr>
+                <td>12121212121</td>
+                <td>100 ETH</td>
+              </tr> -->
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

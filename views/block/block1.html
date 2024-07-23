@@ -1,7 +1,9 @@
 <script>
+    let web3;
+
     function connect() {
         web3 = new Web3(
-            new Web3.providers.HttpProvider("HTTP://10.20.32.26:7545")
+            new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545")
         );
 
         if (web3.isConnected()) {
@@ -11,14 +13,33 @@
         }
     }
 
+    function get() {
+        let accounts = web3.eth.accounts;
+        console.log(accounts);
+        let result = '';
+        for (var i in accounts) {
+            let balance = web3
+                .fromWei(web3.eth.getBalance(accounts[i]))
+                .toNumber() + "ETH";
+            result += '<tr>';
+            result += '<td>' + accounts[i] + '</td>';
+            result += '<td>' + balance + '</td>';
+            result += '</tr>';
+        }
+        $('#acc_info').html(result);
+    };
 
-    $(document).ready(function () {
-        $('#connect_btn').click(function () {        //connect버튼을 눌렀을때 이벤트
-            connect();
-        })
-        $('#get_btn').click(function () {
-            alert('get_btn');
-        })
+
+
+    $(document).ready(function () {     // 문서가 준비됐을때
+        connect();
+        get();
+
+        // $('#connect_btn').click(function () {        //connect버튼을 눌렀을때 이벤트
+        // })
+
+        // $('#get_btn').click(function () {
+        // })
     });
 </script>
 
@@ -26,8 +47,8 @@
     <div class="row">
         <div class="col-sm-12">
             <h2>Block1 Page</h2>
-            <a href="#" id="connect_btn" class="btn btn-info" role="button">Connect</a>
-            <a href="#" id="get_btn" class="btn btn-info" role="button">Get</a>
+            <!-- <a href="#" id="connect_btn" class="btn btn-info" role="button">Connect</a> -->
+            <!-- <a href="#" id="get_btn" class="btn btn-info" role="button" style="margin-bottom: 20px;">Get</a> -->
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -35,10 +56,9 @@
                         <th>Balance</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="acc_info">
                     <tr>
-                        <td>0xC013c92cC9E88dAEa89c4601Fe55b249a315157D</td>
-                        <td>100.00 ETH</td>
+
                     </tr>
                 </tbody>
             </table>
