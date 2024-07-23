@@ -19,7 +19,7 @@ const passport = require("passport"),
 // Database 연동
 var db_connect = require('./db/db_connect');
 var db_sql = require('./db/db_sql');
-
+               
 //html 환경설정, post, public 디렉토리를 세팅해주는 함수
 app.set('view engine', 'html');     // 화면의 확장자는 html
 app.use(bodyParser.urlencoded({ extended: false })); //객체 들어감. 추가 2 

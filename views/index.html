@@ -99,9 +99,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/block/block1">Block1</a>
                 </li>
+
+                {% if loginid %}    <!-- 로그인을 해야만 보이는 block2 -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/block/block2">Block2</a>
+                    <a class="nav-link" href="/block/block2?id={{loginid}}">Block2</a>
                 </li>
+                {% endif %}
+
             </ul>
         </div>
     </nav>
